@@ -9,13 +9,13 @@ Running the log generator
 -------------------------
 
 If you don't have Python installed, download the appropriate zip file for your 
-platform from `executables`, unzip, and double-click the file `psppp_log_gen`. 
-(The programs might not work on 32-bit systems.)
+platform from the releases section, unzip, and double-click the file 
+`psppp_log_gen`. (The programs might not work on 32-bit systems.)
 
 If you have Python 2.7 installed (Mac OS X >= 10.8 and recent versions of Linux 
-should by default), download `executables/psppp_log_gen.zip` and run from the 
-command line with `python psppp_log_gen.zip [args]`. You can view the possible 
-arguments using `python psppp_log_gen.zip -h`.
+should by default), download `py_psppp_log_gen.zip` from the releases section 
+and run from the command line with `python py_psppp_log_gen.zip [args]`. You can view 
+the possible arguments using `python psppp_log_gen.zip -h`.
 
 ### Team vs. individual mode ###
 
