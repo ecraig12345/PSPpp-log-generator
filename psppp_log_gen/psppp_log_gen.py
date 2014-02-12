@@ -163,11 +163,11 @@ def main():
 		new_objects = [o for o in objects if o.obj_type == u'new']
 		reused_objects = [o for o in objects if o.obj_type == u'reused']
 	if args.new_file:
-		new_objects.extend(csv_to_entries(PspObjectEntry, args.new_objects,
-				args.encoding, type=u'new'))
+		new_objects.extend(csv_to_entries(PspObjectEntry, args.new_file,
+				args.encoding, obj_type=u'new'))
 	if args.reused_file:
-		reused_objects.extend(csv_to_entries(PspObjectEntry, args.reused_objects,
-				args.encoding, type=u'reused'))
+		reused_objects.extend(csv_to_entries(PspObjectEntry, args.reused_file,
+				args.encoding, obj_type=u'reused'))
 	
 	with codecs.open(args.out_file, 'w+', encoding='utf-8') as f:
 		# Write the header
