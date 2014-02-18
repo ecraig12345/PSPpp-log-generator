@@ -37,3 +37,7 @@ nosetests.xml
 
 # Mac...
 .DS_Store
+
+# Other folders
+examples
+releases
