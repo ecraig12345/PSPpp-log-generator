@@ -5,6 +5,7 @@ Classes representing various types of entries in the PSP++ log file
 """
 
 import datetime
+import os
 
 class PspTimeEntry(object):
 	"""
@@ -58,7 +59,9 @@ class PspTimeEntry(object):
 				and self.end < other.end and self.name < other.name
 		
 	def __unicode__(self):
-		return u'\n'.join([
+		# Using os.linesep for joining assumes that if the resulting string is
+		# written to files, it will always be done using the codecs module.
+		return unicode(os.linesep).join([
 				u'\t- date: ' + self.date.strftime('%b %d, %Y').replace(' 0', ' '),
 				u'\t  start time: ' + self.start.strftime('%I:%M%p').lstrip('0'),
 				u'\t  end time: ' + self.end.strftime('%I:%M%p').lstrip('0'),
@@ -147,7 +150,9 @@ class PspObjectEntry(object):
 		if self.comment:
 			str_lst += [val_str(u'comment', self.comment)]
 
-		return u'\n'.join(str_lst)
+		# Using os.linesep for joining assumes that if the resulting string is
+		# written to files, it will always be done using the codecs module.
+		return unicode(os.linesep).join(str_lst)
 
 	def __str__(self):
 		return unicode(self).encode('utf-8')
@@ -185,7 +190,9 @@ class PspDefectEntry(object):
 		return self.date < other.date
 	
 	def __unicode__(self):
-		return u'\n'.join([
+		# Using os.linesep for joining assumes that if the resulting string is
+		# written to files, it will always be done using the codecs module.
+		return unicode(os.linesep).join([
 				u'\t- date: ' + self.date.strftime('%b %d, %Y').replace(' 0', ' '),
 				u'\t  type: ' + self.type,
 				u'\t  fix time: %s' % self.fix_time,
