@@ -39,9 +39,15 @@ class PspTimeEntry(object):
 		# Google Forms stores dates as h:mm:ss, using 24-hour time and not
 		# padding the hour with 0s. 
 		if len(start) == 7: start = '0' + start
-		self.start = datetime.datetime.strptime(start, '%H:%M:%S').time()
+		try: 
+			self.start = datetime.datetime.strptime(start, '%H:%M:%S').time()
+		except ValueError:
+			self.start = datetime.datetime.strptime(start, '%H:%M').time()
 		if len(end) == 7: end = '0' + end
-		self.end = datetime.datetime.strptime(end, '%H:%M:%S').time()
+		try:
+			self.end = datetime.datetime.strptime(end, '%H:%M:%S').time()
+		except ValueError:
+			self.end = datetime.datetime.strptime(end, '%H:%M').time()
 		self.phase = phase
 		if team_mode and name: comment = u'(%s) %s' % (name, comment)
 		self.comment = comment
@@ -116,7 +122,7 @@ class PspObjectEntry(object):
 		self.type = type
 		self.comment = comment
 		
-		int_or_0 = lambda val: 0 if val == None else int(val)
+		int_or_0 = lambda val: int(val) if val else None
 		# Don't set values that are inappropriate for this object type
 		if self.obj_type == u'new':
 			self.est_lines = int(est_lines)
