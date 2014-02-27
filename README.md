@@ -6,9 +6,11 @@ Automates the creation of PSP++ log text files from CSV files. PSP++ information
 Running the log generator
 -------------------------
 
-If you don't have Python installed, download the appropriate zip file for your platform from the releases section, unzip, and double-click the file `psppp_log_gen`. (The programs might not work on 32-bit systems.)
+If you don't have Python installed, download the appropriate zip file for your platform from the releases section, unzip, and double-click the file `psppp_log_gen`. (The programs might not work on 32-bit systems.) For now, you'll have to type file paths relative to your home directory, so you might want to temporarily put your PSP files there or at another path that's easy to type.
 
-If you have Python 2.7 installed (Mac OS X >= 10.8 and recent versions of Linux should by default), download `py_psppp_log_gen.zip` from the releases section and run from the command line with `python py_psppp_log_gen.zip [args]`. You can view the possible arguments using `python py_psppp_log_gen.zip -h`.
+If you have Python 2.7 installed (Mac OS X >= 10.8 and recent versions of Linux should by default), download `psppp_log_gen_py.zip` from the releases section and run from the command line with `python psppp_log_gen_py.zip [args]`. You can view the possible arguments using `python psppp_log_gen_py.zip -h`.
+
+If you only want to make a time log, you can ignore the prompts for paths to defect and object CSV files.
 
 ### Team vs. individual mode ###
 
