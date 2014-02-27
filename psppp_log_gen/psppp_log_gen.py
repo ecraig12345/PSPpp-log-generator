@@ -205,6 +205,11 @@ def main():
 		write_entries(u'defect log', defect_entries)
 	
 		print 'Successfully wrote', args.out_file
+		raw_input('Press enter/return to quit...')
 
 if __name__ == '__main__':
-	main()
+	try:
+		main()
+	except Exception, e:
+		print e
+		raw_input('Press enter/return to quit...')
