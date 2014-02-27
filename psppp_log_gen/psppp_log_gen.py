@@ -133,6 +133,15 @@ def csv_to_entries(cls, csv_path, encoding, **kwargs):
 	entries.sort()
 	return entries
 
+def writelns(f, iterable, seps=1):
+	"""
+	Writes a line of text followed by the platform-specific line separator,
+	because the codecs module doesn't convert \n...
+	"""
+	for line in iterable:
+		f.write(line)
+		f.write(os.linesep * seps)
+
 def main():
 	args = _get_args()
 	time_entries, defect_entries, new_objects, reused_objects = [], [], [], []
@@ -175,19 +184,21 @@ def main():
 			with codecs.open(args.header, encoding=args.encoding) as h:
 				f.writelines(h.readlines())
 		else: # or use the info specified
-			f.write((u'name: %s\ndate: %s\nprogram: %s\nlanguage: %s\n' +
-					u'instructor: %s\nactual added lines: %s\n' +
-					u'actual base lines: %s\nactual modified lines: %s\n' +
-					u'actual removed lines: %s') 
-					% (args.name, args.date, args.program, args.language,
-						args.instructor, args.added, args.base, args.modified,
-						args.removed))
+			writelns(f, [u'name: %s' % args.name,
+					u'date: %s' % args.date,
+					u'program: %s' % args.program,
+					u'language: %s' % args.language,
+					u'instructor: %s' % args.instructor,
+					u'actual added lines: %s' % args.added,
+					u'actual base lines: %s' % args.base,
+					u'actual modified lines: %s' % args.modified,
+					u'actual removed lines: %s' % args.removed])
 		
 		# Write any categories of entries used
 		def write_entries(name, entries):
 			if entries:
-				f.write(u'\n\n%s:\n\n' % name)
-				f.write(u'\n\n'.join(unicode(e) for e in entries))
+				writelns(f, [u'', name, u''])
+				writelns(f, (unicode(e) for e in entries), seps=2)
 		write_entries(u'time log', time_entries)
 		write_entries(u'new objects', new_objects)
 		write_entries(u'reused objects', reused_objects)
